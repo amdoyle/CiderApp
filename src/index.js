@@ -1,8 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import {render} from 'react-dom';
+import Structure from './components/structure';
+import AddCider from './components/addcider';
+// import './index.css';
+// import App from './App';
+// import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+render(<Structure />, document.getElementById('root'));
+render(<AddCider />, document.getElementById('main'));
+// registerServiceWorker();
