@@ -7,31 +7,24 @@ export default class AddCider extends React.Component {
     this.addNewCider = this.addNewCider.bind(this);
   }
 
+  //extracting the checked/selected values from the form
+  getValue = (field) => {
+    const fieldSet = field.children;
+    const fieldSetCheckBox = Array.prototype.slice.call(fieldSet);
+    const checked = fieldSetCheckBox.filter(item => item.checked);
+    return checked;
+  }
+
   addNewCider = (event) => {
     event.preventDefault();
-
-    //extracting the checked values from the flavor checkboxes
-    const flavorFieldSet = this.flavor.children;
-    const flavorFieldSetCheckBox = Array.prototype.slice.call(flavorFieldSet);
-    const flavorsChecked = flavorFieldSetCheckBox.filter(item => item.checked);
-
-    //extracting the selected values from the sweetness checkboxes
-    const sweetnessFieldSet = this.sweetness.children;
-    const sweetnessFieldSetCheckBox = Array.prototype.slice.call(sweetnessFieldSet);
-    const sweetnesssChecked = sweetnessFieldSetCheckBox.filter(item => item.checked);
-
-    //extracting the selected values from the sweetness checkboxes
-    const ratingFieldSet = this.rating.children;
-    const ratingFieldSetCheckBox = Array.prototype.slice.call(ratingFieldSet);
-    const ratingsChecked = ratingFieldSetCheckBox.filter(item => item.checked);
 
     const cider = {
       name: this.name.value,
       brewer: this.brewer.value,
       percent: this.percent.value,
-      flavor: flavorsChecked,
-      sweetness: sweetnesssChecked,
-      rating: ratingsChecked
+      flavor: this.getValue(this.flavor),
+      sweetness: this.getValue(this.sweetness),
+      rating: this.getValue(this.rating)
     }
   };
 
